@@ -21,6 +21,8 @@
 @include mat.all-component-typographies();
 @include mat.core();
 
+// Light theme (Default)
+
 $tb-mat-indigo: (
   50: #e8eaf6,
   100: #c5cae9,
@@ -79,6 +81,8 @@ $tb-theme: map_merge($tb-mat-theme, $color);
 
 $primary: mat.m2-get-color-from-palette($tb-primary);
 $accent: mat.m2-get-color-from-palette($tb-accent);
+
+// Dark theme 
 
 $tb-dark-mat-indigo: (
   50: #e8eaf6,
@@ -266,3 +270,150 @@ $tb-dark-theme: map_merge($tb-dark-theme, $color);
 .tb-dark {
   @include mat.all-component-colors($tb-dark-theme);
 }
+
+// Enhancement: New theme added for extra color theme
+// High contrast theme 
+$tb-high-contrast-indigo: (
+  50: #e1f5fe,
+  100: #b3e5fc,
+  200: #81d4fa,
+  300: #4fc3f7,
+  400: #29b6f6,
+  500: #03a9f4, // Primary color for high contrast
+  600: #039be5,
+  700: #0288d1,
+  800: #0277bd,
+  900: #01579b,
+  A100: #80d8ff,
+  A200: #40c4ff,
+  A400: #00b0ff,
+  A700: #0091ea,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white, // Ensure high contrast text
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$tb-high-contrast-primary: mat.m2-define-palette($tb-high-contrast-indigo);
+
+// Background and other theme properties for high-contrast
+$tb-high-contrast-background: (
+  background: #212121, // Dark background for high contrast
+  app-bar: #1976d2,
+  hover: rgba(255, 255, 255, 0.1),
+  card: #263238,
+  dialog: #37474f,
+);
+
+// Define high contrast theme
+$tb-high-contrast-theme: mat.m2-define-light-theme((
+  color: (
+    primary: $tb-high-contrast-primary,
+    accent: $tb-accent
+  ),
+  typography: mat.m2-define-typography-config(),
+  density: 0
+));
+
+// Merge the high contrast theme into the existing theme
+$color: map_get($tb-high-contrast-theme, color);
+$color: map_merge($color, (background: $tb-high-contrast-background));
+$tb-high-contrast-theme: map_merge($tb-high-contrast-theme, (color: $color));
+
+// Dark theme adjustments for better contrast
+$tb-dark-mat-indigo: (
+  50: #e8eaf6,
+  100: #c5cae9,
+  200: #9fa8da,
+  300: #7986cb,
+  400: #5c6bc0,
+  500: $tb-dark-primary-color,
+  600: $tb-secondary-color,
+  700: #303f9f,
+  800: $tb-primary-color,
+  900: #1a237e,
+  A100: $tb-hue3-color,
+  A200: #536dfe,
+  A400: #3d5afe,
+  A700: #304ffe,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: map_get($tb-mat-indigo, 900),
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: rgba(black, 0.87),
+    A700: rgba(black, 0.87),
+  )
+);
+
+// Light and Dark theme mixins
+@mixin mat-theme-switch($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  mat-toolbar {
+    background-color: mat.m2-get-color-from-palette($background, app-bar);
+    color: mat.m2-get-color-from-palette($foreground, text);
+  }
+
+  .mat-fab-toolbar-background {
+    background: mat.m2-get-color-from-palette($background, app-bar);
+    color: mat.m2-get-color-from-palette($foreground, text);
+  }
+
+  .mat-primary {
+    background: mat.m2-get-color-from-palette($primary);
+    color: mat.m2-get-color-from-palette($primary, default-contrast);
+  }
+
+  .mat-accent {
+    background: mat.m2-get-color-from-palette($accent);
+    color: mat.m2-get-color-from-palette($accent, default-contrast);
+  }
+}
+
+// Apply themes to the body or container dynamically (example)
+body {
+  @include mat-theme-switch($tb-mat-theme); // Default light theme
+}
+
+// Apply dark theme
+body.dark-mode {
+  @include mat-theme-switch($tb-dark-theme);
+}
+
+// Apply high contrast theme
+body.high-contrast-mode {
+  @include mat-theme-switch($tb-high-contrast-theme);
+}
+
+// Final mixins for switching themes based on user's selection
+@mixin theme-switcher($theme) {
+  body {
+    @include mat-theme-switch($theme);
+  }
+}
+
+
