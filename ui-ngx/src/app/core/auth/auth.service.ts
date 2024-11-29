@@ -161,11 +161,7 @@ export class AuthService {
   }
 
   public changePassword(currentPassword: string, newPassword: string, config?: RequestConfig) {
-    return this.http.post('/api/auth/changePassword', {currentPassword, newPassword}, defaultHttpOptionsFromConfig(config)).pipe(
-      tap((loginResponse: LoginResponse) => {
-          this.setUserFromJwtToken(loginResponse.token, loginResponse.refreshToken, false);
-        }
-      ));
+    return this.http.post('/api/auth/changePassword', {currentPassword, newPassword}, defaultHttpOptionsFromConfig(config));
   }
 
   public getUserPasswordPolicy() {
