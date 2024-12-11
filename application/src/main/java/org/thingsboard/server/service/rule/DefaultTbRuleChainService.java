@@ -419,10 +419,6 @@ public class DefaultTbRuleChainService extends AbstractTbEntityService implement
         return isRuleNode(ruleNode, TbRuleChainOutputNode.class);
     }
 
-    private boolean isInputRuleNode(RuleNode ruleNode) {
-        return isRuleNode(ruleNode, TbRuleChainInputNode.class);
-    }
-
     private boolean isRuleNode(RuleNode ruleNode, Class<?> clazz) {
         return ruleNode != null && ruleNode.getType().equals(clazz.getName());
     }

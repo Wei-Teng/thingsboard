@@ -32,18 +32,10 @@ public class AlarmSubscriptionUpdate {
     @Getter
     private boolean alarmDeleted;
 
-    public AlarmSubscriptionUpdate(AlarmInfo alarm) {
-        this(alarm, false);
-    }
-
     public AlarmSubscriptionUpdate(AlarmInfo alarm, boolean alarmDeleted) {
         super();
         this.alarm = alarm;
         this.alarmDeleted = alarmDeleted;
-    }
-
-    public AlarmSubscriptionUpdate(SubscriptionErrorCode errorCode) {
-        this(errorCode, null);
     }
 
     public AlarmSubscriptionUpdate(SubscriptionErrorCode errorCode, String errorMsg) {

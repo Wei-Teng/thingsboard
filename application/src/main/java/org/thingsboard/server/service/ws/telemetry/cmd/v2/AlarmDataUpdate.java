@@ -39,10 +39,6 @@ public class AlarmDataUpdate extends DataUpdate<AlarmData> {
         this.totalEntities = totalEntities;
     }
 
-    public AlarmDataUpdate(int cmdId, int errorCode, String errorMsg) {
-        super(cmdId, null, null, errorCode, errorMsg);
-    }
-
     @Override
     public CmdUpdateType getCmdUpdateType() {
         return CmdUpdateType.ALARM_DATA;

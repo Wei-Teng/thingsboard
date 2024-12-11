@@ -191,7 +191,7 @@ class DeviceState {
         for (DeviceProfileAlarm alarm : deviceProfile.getAlarmSettings()) {
             AlarmState alarmState = alarmStates.computeIfAbsent(alarm.getId(),
                     a -> new AlarmState(this.deviceProfile, deviceId, alarm, getOrInitPersistedAlarmState(alarm), dynamicPredicateValueCtx));
-            stateChanged |= alarmState.processAlarmClear(ctx, alarmNf);
+            stateChanged |= alarmState.processAlarmClear(alarmNf);
         }
         ctx.tellSuccess(msg);
         return stateChanged;

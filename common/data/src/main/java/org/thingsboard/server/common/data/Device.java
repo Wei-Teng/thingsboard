@@ -93,22 +93,6 @@ public class Device extends BaseDataWithAdditionalInfo<DeviceId> implements HasL
         this.version = device.getVersion();
     }
 
-    public Device updateDevice(Device device) {
-        this.tenantId = device.getTenantId();
-        this.customerId = device.getCustomerId();
-        this.name = device.getName();
-        this.type = device.getType();
-        this.label = device.getLabel();
-        this.deviceProfileId = device.getDeviceProfileId();
-        this.setDeviceData(device.getDeviceData());
-        this.setFirmwareId(device.getFirmwareId());
-        this.setSoftwareId(device.getSoftwareId());
-        Optional.ofNullable(device.getAdditionalInfo()).ifPresent(this::setAdditionalInfo);
-        this.setExternalId(device.getExternalId());
-        this.setVersion(device.getVersion());
-        return this;
-    }
-
     @Schema(description = "JSON object with the Device Id. " +
             "Specify this field to update the Device. " +
             "Referencing non-existing Device Id will cause error. " +

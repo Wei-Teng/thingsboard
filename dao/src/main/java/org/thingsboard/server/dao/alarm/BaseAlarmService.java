@@ -343,12 +343,6 @@ public class BaseAlarmService extends AbstractCachedEntityService<TenantId, Page
     }
 
     @Override
-    public void deleteEntityAlarmRecordsByTenantId(TenantId tenantId) {
-        log.trace("Executing deleteEntityAlarmRecordsByTenantId [{}]", tenantId);
-        alarmDao.deleteEntityAlarmRecordsByTenantId(tenantId);
-    }
-
-    @Override
     public long countAlarmsByQuery(TenantId tenantId, CustomerId customerId, AlarmCountQuery query) {
         validateId(tenantId, id -> INCORRECT_TENANT_ID + id);
         return alarmDao.countAlarmsByQuery(tenantId, customerId, query);

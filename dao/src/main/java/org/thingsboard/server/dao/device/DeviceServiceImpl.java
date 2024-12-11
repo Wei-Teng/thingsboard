@@ -431,13 +431,6 @@ public class DeviceServiceImpl extends CachedVersionedEntityService<DeviceCacheK
         return deviceDao.findDevicesByIds(toUUIDs(deviceIds));
     }
 
-    @Override
-    public ListenableFuture<List<Device>> findDevicesByIdsAsync(List<DeviceId> deviceIds) {
-        log.trace("Executing findDevicesByIdsAsync, deviceIds [{}]", deviceIds);
-        validateIds(deviceIds, ids -> "Incorrect deviceIds " + ids);
-        return deviceDao.findDevicesByIdsAsync(toUUIDs(deviceIds));
-    }
-
     @Transactional
     @Override
     public void deleteDevicesByTenantId(TenantId tenantId) {
@@ -656,16 +649,6 @@ public class DeviceServiceImpl extends CachedVersionedEntityService<DeviceCacheK
         validateId(edgeId, id -> INCORRECT_EDGE_ID + id);
         validatePageLink(pageLink);
         return deviceDao.findDevicesByTenantIdAndEdgeId(tenantId.getId(), edgeId.getId(), pageLink);
-    }
-
-    @Override
-    public PageData<Device> findDevicesByTenantIdAndEdgeIdAndType(TenantId tenantId, EdgeId edgeId, String type, PageLink pageLink) {
-        log.trace("Executing findDevicesByTenantIdAndEdgeIdAndType, tenantId [{}], edgeId [{}], type [{}] pageLink [{}]", tenantId, edgeId, type, pageLink);
-        validateId(tenantId, id -> INCORRECT_TENANT_ID + id);
-        validateId(edgeId, id -> INCORRECT_EDGE_ID + id);
-        validateString(type, t -> "Incorrect type " + t);
-        validatePageLink(pageLink);
-        return deviceDao.findDevicesByTenantIdAndEdgeIdAndType(tenantId.getId(), edgeId.getId(), type, pageLink);
     }
 
     @Override
