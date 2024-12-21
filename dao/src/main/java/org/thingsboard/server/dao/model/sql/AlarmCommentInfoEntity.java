@@ -28,14 +28,6 @@ public class AlarmCommentInfoEntity extends AbstractAlarmCommentEntity<AlarmComm
 
     private String email;
 
-    public AlarmCommentInfoEntity() {
-        super();
-    }
-
-    public AlarmCommentInfoEntity(AlarmCommentEntity alarmCommentEntity) {
-        super(alarmCommentEntity);
-    }
-
     public AlarmCommentInfoEntity(AlarmCommentEntity alarmCommentEntity, String firstName, String lastName, String email) {
         super(alarmCommentEntity);
         this.firstName = firstName;

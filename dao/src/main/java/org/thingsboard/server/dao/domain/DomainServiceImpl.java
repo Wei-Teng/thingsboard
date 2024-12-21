@@ -47,8 +47,6 @@ import java.util.stream.Collectors;
 @Service
 public class DomainServiceImpl extends AbstractEntityService implements DomainService {
 
-    public static final String INCORRECT_TENANT_ID = "Incorrect tenantId ";
-
     @Autowired
     private OAuth2ClientDao oauth2ClientDao;
     @Autowired

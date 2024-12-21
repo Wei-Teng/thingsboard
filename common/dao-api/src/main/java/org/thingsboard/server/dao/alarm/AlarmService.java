@@ -113,8 +113,6 @@ public interface AlarmService extends EntityDaoService {
 
     int deleteEntityAlarmRecords(TenantId tenantId, EntityId entityId);
 
-    void deleteEntityAlarmRecordsByTenantId(TenantId tenantId);
-
     long countAlarmsByQuery(TenantId tenantId, CustomerId customerId, AlarmCountQuery query);
 
     PageData<EntitySubtype> findAlarmTypesByTenantId(TenantId tenantId, PageLink pageLink);

@@ -322,7 +322,7 @@ class AlarmState {
         return String.valueOf(result);
     }
 
-    public boolean processAlarmClear(TbContext ctx, Alarm alarmNf) {
+    public boolean processAlarmClear(Alarm alarmNf) {
         boolean updated = false;
         if (currentAlarm != null && currentAlarm.getId().equals(alarmNf.getId())) {
             currentAlarm = null;

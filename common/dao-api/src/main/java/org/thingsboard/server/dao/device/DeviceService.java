@@ -83,8 +83,6 @@ public interface DeviceService extends EntityDaoService {
 
     List<Device> findDevicesByIds(List<DeviceId> deviceIds);
 
-    ListenableFuture<List<Device>> findDevicesByIdsAsync(List<DeviceId> deviceIds);
-
     void deleteDevicesByTenantId(TenantId tenantId);
 
     PageData<Device> findDevicesByTenantIdAndCustomerId(TenantId tenantId, CustomerId customerId, PageLink pageLink);
@@ -109,7 +107,5 @@ public interface DeviceService extends EntityDaoService {
     Device unassignDeviceFromEdge(TenantId tenantId, DeviceId deviceId, EdgeId edgeId);
 
     PageData<Device> findDevicesByTenantIdAndEdgeId(TenantId tenantId, EdgeId edgeId, PageLink pageLink);
-
-    PageData<Device> findDevicesByTenantIdAndEdgeIdAndType(TenantId tenantId, EdgeId edgeId, String type, PageLink pageLink);
 
 }
