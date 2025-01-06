@@ -21,6 +21,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
     @media #{$mat-lt-md} {
       flex-direction: column;
       align-items: flex-start;
@@ -35,7 +36,9 @@
     overflow-y: auto;
   }
 
-  .tb-usage-items, .tb-usage-items-counts, .tb-usage-items-progress {
+  .tb-usage-items,
+  .tb-usage-items-counts,
+  .tb-usage-items-progress {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -44,18 +47,27 @@
   }
 
   .tb-usage-items-progress {
+    --mdc-linear-progress-track-height: 8px;
+    --mdc-linear-progress-active-indicator-height: 8px;
     width: 34px;
+
     @media #{$mat-md} {
       display: none;
     }
+
+    .mat-mdc-progress-bar {
+      &.critical {
+        --mdc-linear-progress-track-color: rgba(209, 39, 48, 0.06);
+        --mdc-linear-progress-active-indicator-color: #d12730;
+      }
+    }
+
     .mdc-linear-progress {
-      height: 8px;
-      margin-top: 6px;
-      margin-bottom: 6px;
+      margin: 6px 0;
       border-radius: 2px;
+
       @media #{$mat-md-lg} {
-        margin-top: 4px;
-        margin-bottom: 4px;
+        margin: 4px 0;
       }
     }
   }
@@ -67,7 +79,8 @@
     gap: 16px;
   }
 
-  .tb-usage-item, .tb-usage-item-counts {
+  .tb-usage-item,
+  .tb-usage-item-counts {
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;
@@ -76,12 +89,14 @@
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
+
     @media #{$mat-md-lg} {
       font-size: 11px;
       line-height: 16px;
     }
+
     &.critical {
-      color: #D12730;
+      color: #d12730;
     }
   }
 
@@ -91,23 +106,5 @@
 
   .tb-usage-item-counts {
     color: rgba(0, 0, 0, 0.76);
-  }
-}
-
-:host ::ng-deep {
-  .tb-usage-items-progress {
-    .mat-mdc-progress-bar {
-      .mdc-linear-progress__bar-inner {
-        border-top-width: 8px;
-      }
-      &.critical {
-        .mdc-linear-progress__buffer-bar {
-          background: rgba(209, 39, 48, 0.06);
-        }
-        .mdc-linear-progress__bar-inner {
-          border-top-color: #D12730;
-        }
-      }
-    }
   }
 }
